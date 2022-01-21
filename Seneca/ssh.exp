@@ -1,0 +1,12 @@
+#!/usr/bin/expect -f
+set timeout -1
+
+spawn ssh ramachandra-muralidh@matrix.senecacollege.ca
+
+expect "ramachandra-muralidh@matrix.senecacollege.ca's password:"
+send -- "Lol nope ;)\r"
+
+interact
+
+
+
