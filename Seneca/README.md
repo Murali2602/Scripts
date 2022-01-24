@@ -1,1 +1,1 @@
-### Scripts to automate the connection of vpn and to ssh.
+### Scripts to automate the connection of vpn and ssh.

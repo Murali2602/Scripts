@@ -1,14 +1,24 @@
 #!/usr/bin/expect -f
 set timeout -1
-spawn vpn -c
+spawn /usr/bin/vpn -f
+
+expect "done! reconnect? (y/N): "
+send -- "y\r"
+
 
 expect "Username:"
 send -- "ramachandra-muralidh\r"
 
 expect "Password:"
-send -- "Lol i'm not so dumb ;)\r"
+send -- "nah ;)\r"
 
-expect "...giving up, delete cookie and try again? (Y/n)"
+expect "...giving up, delete cookie and try again? (Y/n) "
 send -- "Y\r"
 
-expect eof
+expect "Username:"
+send -- "ramachandra-muralidh\r"
+
+expect "Password:"
+send -- "nah once again lol\r"
+
+interact 
