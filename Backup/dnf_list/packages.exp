@@ -1,11 +1,19 @@
 #!/usr/bin/expect -f  
 set timeout -1
 
+spawn sudo ether-wake 00:24:1d:13:48:e6
+
+expect -- "murali: "
+send -- "\r"
+
+sleep 50
+
+
 spawn bash /home/murali/scripts/Backup/dnf_list/packages.sh
 
 expect "murali@192.168.0.150's password:"
 
-send -- "lol ;)\r"
+send -- "\r"
 
 expect eof 
 
