@@ -4,8 +4,10 @@ set timeout -1
 spawn ssh ramachandra-muralidh@matrix.senecacollege.ca
 
 expect "ramachandra-muralidh@matrix.senecacollege.ca's password:"
-send -- "Nope ;)\r"
+send -- "\r"
 
+expect "*$ "
+send -- "clear\r"
 interact
 
 
