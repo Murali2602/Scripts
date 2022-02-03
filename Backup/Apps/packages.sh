@@ -7,6 +7,7 @@ then
 	cd $path
 	dnf debug-dump
 	flatpak list |  awk '{ print $1 }' > Flatpak_Apps.txt
+	snap list |  awk '{ print $1 }'  | tail -n +2 > Snap_Apps.txt
 	find $path -type f -mmin +1 -exec rm {} \;
 	rsync -r $path murali@192.168.0.150:/home/murali/Backup_Fedora/Apps/
 else
@@ -14,6 +15,7 @@ else
         cd $path
         dnf debug-dump
         flatpak list |  awk '{ print $1 }' > Flatpak_Apps.txt
+	snap list |  awk '{ print $1 }'  | tail -n +2 > Snap_Apps.txt
         find $path -type f -mmin +1 -exec rm {} \;
 	sleep 30
         rsync -r $path murali@192.168.0.150:/home/murali/Backup_Fedora/Apps/	

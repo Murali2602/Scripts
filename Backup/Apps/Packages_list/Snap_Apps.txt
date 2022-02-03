@@ -1,0 +1,8 @@
+bare
+core18
+gnome-3-28-1804
+gnome-3-34-1804
+gtk-common-themes
+mailspring
+snapd
+whatsdesk
