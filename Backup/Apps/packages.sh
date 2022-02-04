@@ -9,7 +9,7 @@ then
 	flatpak list |  awk '{ print $1 }' > Flatpak_Apps.txt
 	snap list |  awk '{ print $1 }'  | tail -n +2 > Snap_Apps.txt
 	find $path -type f -mmin +1 -exec rm {} \;
-	rsync -r $path murali@192.168.0.150:/home/murali/Backup_Fedora/Apps/
+	rsync -e 'ssh -p <port>' -r $path murali@192.168.0.150:/home/murali/Backup_Fedora/Apps/
 else
 	sudo ether-wake 00:24:1d:13:48:e6
         cd $path
@@ -17,6 +17,6 @@ else
         flatpak list |  awk '{ print $1 }' > Flatpak_Apps.txt
 	snap list |  awk '{ print $1 }'  | tail -n +2 > Snap_Apps.txt
         find $path -type f -mmin +1 -exec rm {} \;
-	sleep 30
-        rsync -r $path murali@192.168.0.150:/home/murali/Backup_Fedora/Apps/	
+	/bin/sleep 30
+        rsync -e 'ssh -p <port>' -r $path murali@192.168.0.150:/home/murali/Backup_Fedora/Apps/	
 fi

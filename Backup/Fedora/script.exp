@@ -2,11 +2,8 @@
 
 
 set timeout -1
-spawn sudo rsync -aAXHv --delete --exclude=/dev/ --exclude=/proc/ --exclude=/sys/ --exclude=/tmp/ --exclude=/run/ --exclude=/mnt/ --exclude=/media/ --exclude=/lost+found/ --exclude=/var/run/ --exclude=/var/cache/ --exclude=/var/tmp/ --exclude=/usr/ --exclude=/srv/ --exclude=/bin --exclude=/lib --exclude=/lib64 --exclude=/proc/ --exclude=/home/murali/.cache/ --exclude=/var/lib/flatpak/ --exclude=/var/lib/snapd/ {--exclude=/home/murali/Documents/Virtual Machines/} --exclude=/home/murali/Downloads/ --exclude=/home/murali/Backup/ --exclude=/var/lib/libvirt/ --exclude=/snap --exclude=/sbin --exclude=/var/log/ --exclude=/home/murali/vmware/ --exclude=/home/murali/snap/ --exclude=/home/murali/.wine/ --exclude=/home/murali/.thumbnails/ --exclude=/home/murali/.var/app/com.spotify.Client/ / murali@192.168.0.150:/home/murali/Backup_Fedora/Fedora/System_Backup/
+spawn sudo rsync -e "ssh -p <port>" -aAXHv --delete --exclude=/dev/ --exclude=/proc/ --exclude=/sys/ --exclude=/tmp/ --exclude=/run/ --exclude=/mnt/ --exclude=/media/ --exclude=/lost+found/ --exclude=/var/run/ --exclude=/var/cache/ --exclude=/var/tmp/ --exclude=/usr/ --exclude=/srv/ --exclude=/bin --exclude=/lib --exclude=/lib64 --exclude=/proc/ --exclude=/home/murali/.cache/ --exclude=/var/lib/flatpak/ --exclude=/var/lib/snapd/ {--exclude=/home/murali/Documents/Virtual Machines/} --exclude=/home/murali/Downloads/ --exclude=/home/murali/Backup/ --exclude=/var/lib/libvirt/ --exclude=/snap --exclude=/sbin --exclude=/var/log/ --exclude=/home/murali/vmware/ --exclude=/home/murali/snap/ --exclude=/home/murali/.wine/ --exclude=/home/murali/.thumbnails/ --exclude=/home/murali/.var/app/com.spotify.Client/ / murali@192.168.0.150:/home/murali/Backup_Fedora/Fedora/System_Backup/
 match_max 100000
 expect -exact "\[sudo\] password for murali: "
-send -- "\r"
-expect -exact "\r
-\rmurali@192.168.0.150's password: "
-send -- "\r"
+send -- "kali\r"
 expect eof
