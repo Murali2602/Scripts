@@ -1,4 +1,4 @@
-# Grades.py    
+# [Grades.py](Grades.py)    
 An automation script that -
 1. Logins to [Seneca Blackboard](https://learn.senecacollege.ca).
 2. Visits every subject page and grabs screenshots of the **Grades**.
