@@ -1,0 +1,93 @@
+---
+ 
+- hosts: localhost            # Runs tasks only on localhost
+  vars_prompt:                # Taking User Input
+
+    - name: vm_path           # Variable "vm_path"
+      prompt: "Enter the path of VMWare Directory"
+      private: no
+
+  tasks: 
+
+    - name:  Find the vmx path      # This will find .vmx file with absolute file path
+      ansible.builtin.find:         # Task to find any file that ends with .vmx
+        paths: '{{ vm_path }}'      # Calling the variable "vm_path"
+        patterns: '*.vmx'           # Specifying the pattern
+      register: vmx_path_file       # Register will save the output of that command/task into the variable "vmx_path_file"
+       
+      
+    - name: Output File path        # The above will save alot of output which is in JSON Format so we will take that output and print only the path.
+      debug: 
+        msg: "{{ vmx_path_file.files | map(attribute='path') |  join('') }}"
+      register: vmx_path            # Save the path output to "vmx_path" variable.
+
+
+    - copy:                         # Copying the output of the variable "vmx_path into a text file.
+        content: "{{ vmx_path }}"     # "content" will copy the output of a variable (unlike src).
+        dest: "/tmp/messy_path.txt"
+
+
+    # We will use awk to format the output of the file to just give us the absolute path.
+    - name: Use awk to just pull the path      
+      shell:
+        cmd: |
+           awk '{match($0,/"\/[^"]*"/,a);print a[0]}' /tmp/messy_path.txt > /tmp/vmx_path.txt 
+
+    
+
+    # We will run OVF Tool on the .vmx file to convert it into .ovf file 
+    - name: Run OVF Tool
+      shell:
+        cmd: |
+          cat /tmp/vmx_path.txt | xargs -I % ovftool % /tmp/      
+      register: ovf_tool_output                      
+      failed_when: "'Failed' in ovf_tool_output.stderr"     # This is so that the command fails only when the condition is met and not for every error (already exists error can be ignore thats why)
+
+
+    # Find the .ovf absolute path written to /tmp folder   
+    - name: Locate the Path of OVF in /tmp 
+      shell: "cat /tmp/vmx_path.txt | xargs basename | sed 's/.vmx//'"
+      register: ovf_path
+     
+        # - set_fact:
+        #string_to_echo: "{{ ovf_path.stdout }}"
+    
+    - debug: 
+        msg: "{{ ovf_path.stdout }}"
+      run_once: true
+
+- hosts: Proxmox
+  vars_prompt:
+
+    - name: vm_id
+      prompt: "Enter the VM ID"
+      private: no
+  
+  tasks:
+
+    - name: Check OVF Directory already exists
+      become: true
+      file:
+        path: "/tmp/{{ hostvars.localhost.ovf_path.stdout }}"
+        state: directory
+      register: remote_ovf_path
+
+
+    - debug:
+        msg:  "{{ remote_ovf_path }}"
+        # loop: "{{ remote_ovf_path }}"
+
+    - name: Copy OVF Directory to Proxmox  
+      become: true
+      copy:
+        src: "/tmp/{{ hostvars.localhost.ovf_path.stdout }}"
+        dest: "/tmp/"
+        force: no
+          #when: not remote_ovf_path.stat.exists
+
+    - name: Import the VM
+      become: true
+      shell: 
+        " cd /tmp/{{ hostvars.localhost.ovf_path.stdout }}/ ; qm importovf {{ vm_id }} *.ovf local-zfs --format qcow2"
+
+

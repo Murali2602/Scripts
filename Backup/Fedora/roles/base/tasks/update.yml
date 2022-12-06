@@ -1,0 +1,69 @@
+---
+
+
+# Increase the speed by tweaking /etc/dnf/dnf.conf file
+- name: Configure DNF package manager
+  lineinfile:
+    dest: /etc/dnf/dnf.conf
+    line: "{{ item.line }}"
+  loop:
+    - { line: 'fastestmirror=1' }
+    - { line: 'max_parallel_downloads=10' }
+
+
+# Importing the keys for the RPM Fusion repositories    
+- name: Importing (free) key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
+
+- name: Importing (non-free) key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
+
+
+
+# Install RPM Repos
+- name: Install RPM Repos
+  dnf:
+    name: 
+      - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-37.noarch.rpm"
+      - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-37.noarch.rpm"
+    state: present
+
+
+    
+# Update the packages cache now 
+- name: Update the system
+  dnf:
+    update_cache: yes
+
+# Upgrade the packages
+- name: Upgrade the Packages
+  dnf:
+    name: "*"
+    state: latest
+
+
+# Add Flatpak Repository
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
+
+
+
+# Check if reboot is required after updating/upgrading packages      
+- name: Check if reboot required
+  stat:
+    path: /var/run/reboot-required
+  register: reboot_required_file
+
+# Reboot if its required
+- name: Reboot if required
+  reboot:
+  when: reboot_required_file.stat.exists == true
+
