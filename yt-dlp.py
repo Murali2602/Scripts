@@ -1,5 +1,17 @@
 #!/usr/bin/env python3
 
+###################################################
+##Author: Murali
+##Date: 6th December 2022
+##Coding: UTF-8 
+###################################################
+
+
+###################################################
+##Description:
+##This is basically automating yt-dlp installation and automatically downloading stuff and saving them.
+###################################################
+
 import subprocess
 
 
