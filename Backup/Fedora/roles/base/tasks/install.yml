@@ -1,0 +1,60 @@
+---
+
+
+# Installing packages available in dnf repo
+- name: Install dnf packages
+  dnf:
+    name:
+      - touchegg
+      - kvantum
+      - flameshot
+      - git
+      - zsh
+      - vim
+      - exa
+      - bat
+    state: latest
+
+# Copy flatpaks.txt that has a list of flatpaks apps installed
+#- name: Copy flatpaks.txt
+#  copy: 
+#    src: flatpak/flatpaks.txt
+#    dest: /tmp/
+
+- name: Copy flatpaks.txt
+  get_url:
+    src: https://nc.ezcloud.ml:7400/index.php/s/atWWcAPNeesB6Wo/download/flatpaks.txt
+    dest: /tmp/
+    owner: murali
+    group: murali
+
+# Install the flatpaks
+- name: Install Flatpaks
+  shell:
+    xargs flatpak install --user -y < /tmp/flatpaks.txt  
+
+
+# Install Teamviewer
+- name: Install Teamviewer
+  shell: 
+    wget https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm -O /tmp/teamviewer.x86_64.rpm ; dnf install -y /tmp/teamviewer.x86_64.rpm
+
+
+# Install tailscale
+- name: Install Tailscale
+  shell: curl -fsSL https://tailscale.com/install.sh | sh 
+
+
+
+# Get latte-dock install script
+- name: Download latte-dock script
+  get_url:
+    src: https://nc.ezcloud.ml:7400/index.php/s/nxEZ2yKW9dLwMWy/download/latte.sh
+    dest: /tmp/
+    owner: murali
+    group: murali
+
+# Install latte-dock
+- name: Install latte-dock
+  script: /tmp/latte.sh
+

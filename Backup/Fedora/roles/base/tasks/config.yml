@@ -1,0 +1,35 @@
+---
+
+
+#- name: ZSH config
+#  become: yes
+#  become_method: su
+#  become_user: murali
+#  synchronize:
+#    src: zsh/.oh-my-zsh
+#    dest: /home/murali/
+#
+#- name: ZSH copy
+#  copy:
+#    src: zsh/.zsh_history
+#    dest: /home/murali/
+#    owner: murali
+#    group: murali
+
+
+- name: ZSH config
+  unarchive:
+    src: https://nc.ezcloud.ml:7400/index.php/s/oS8Hmyb4QBSF76X/download
+    dest: /home/murali/
+    owner: murali
+    group: murali
+
+
+
+- name: Fonts config
+  unarchive:
+    src: https://nc.ezcloud.ml:7400/index.php/s/MaSM7WRm2cDe2ia/download
+    dest: /usr/share/fonts/
+    owner: murali
+    group: murali
+
