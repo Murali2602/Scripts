@@ -19,7 +19,7 @@
 
 - name: ZSH config
   unarchive:
-    src: https://nc.ezcloud.ml:7400/index.php/s/Jf8oziSYzLFYoPN/download/zsh.tar.gz
+    src: https://nc.ezcloud.ml:7400/index.php/s/zsh/download/zsh.tar.gz
     dest: /home/murali/
     owner: murali
     group: murali
@@ -29,7 +29,7 @@
 
 - name: Fonts config
   unarchive:
-    src: https://nc.ezcloud.ml:7400/index.php/s/Q7WW8YaXLKNbgDg/download/fonts.tar.gz
+    src: https://nc.ezcloud.ml:7400/index.php/s/fonts/download/fonts.tar.gz
     dest: /usr/share/fonts/
     owner: murali
     group: murali
