@@ -23,7 +23,7 @@
 
 - name: Copy flatpaks.txt
   get_url:
-    src: https://nc.ezcloud.ml:7400/index.php/s/atWWcAPNeesB6Wo/download/flatpaks.txt
+    url: https://nc.ezcloud.ml:7400/index.php/s/atWWcAPNeesB6Wo/download/flatpaks.txt
     dest: /tmp/
     owner: murali
     group: murali
@@ -49,7 +49,7 @@
 # Get latte-dock install script
 - name: Download latte-dock script
   get_url:
-    src: https://nc.ezcloud.ml:7400/index.php/s/nxEZ2yKW9dLwMWy/download/latte.sh
+    url: https://nc.ezcloud.ml:7400/index.php/s/nxEZ2yKW9dLwMWy/download/latte.sh
     dest: /tmp/
     owner: murali
     group: murali
