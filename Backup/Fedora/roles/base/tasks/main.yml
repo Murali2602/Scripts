@@ -1,20 +1,11 @@
 ---
 
-- hosts: localhost
-  pre_tasks:
-    - name: Install necessary packages
-      dnf: 
-        - git
-        - ansible-core
 
-  tasks:
+- name: Run update.yml task
+  import_tasks: update.yml
 
+- name: Run install.yml task
+  import_tasks: install.yml
 
-    - name: Run update.yml task
-      import_tasks: update.yml
-
-    - name: Run install.yml task
-      import_tasks: install.yml
-
-    - name: Run config.yml task
-      import_tasks: config.yml
+- name: Run config.yml task
+  import_tasks: config.yml
