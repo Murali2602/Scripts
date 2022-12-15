@@ -30,6 +30,8 @@
 
 # Install the flatpaks
 - name: Install Flatpaks
+  become: yes
+  become_user: murali
   shell:
     xargs flatpak install --user -y < /tmp/flatpaks.txt  
 

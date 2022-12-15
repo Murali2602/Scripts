@@ -5,6 +5,7 @@
     - name: Install necessary packages
       dnf: 
         - git
+        - ansible-core
 
   tasks:
 
