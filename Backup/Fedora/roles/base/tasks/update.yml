@@ -48,6 +48,8 @@
 
 # Add Flatpak Repository
 - name: Add the flathub flatpak repository remote to the user installation
+  become: yes
+  become_user: murali
   community.general.flatpak_remote:
     name: flathub
     state: present
