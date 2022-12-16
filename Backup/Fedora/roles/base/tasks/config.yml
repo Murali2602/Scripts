@@ -19,11 +19,11 @@
 
 - name: ZSH config
   unarchive:
-    src: https://nc.ezcloud.ml:7400/index.php/s/zsh/download/zsh.tar.gz
+    src: /home/murali/zsh.tar.gz
     dest: /home/murali/
-    owner: murali
-    group: murali
-    remote_src: yes
+      #owner: murali
+      #group: murali
+      #remote_src: yes
 
 
 
