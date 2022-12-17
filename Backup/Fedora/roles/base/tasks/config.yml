@@ -23,7 +23,7 @@
 
 - name: Fonts config
   unarchive:
-    src: https://nc.ezcloud.ml:7400/index.php/s/fonts
+    src: https://nc.ezcloud.ml:7400/index.php/s/fonts/download/fonts.tar.gz
     dest: /usr/share/fonts/
     owner: murali
     group: murali
@@ -58,7 +58,7 @@
 
 - name: other/misc configuration
   unarchive:
-    src: /home/murali/home.tar.gz
+    src: https://nc.ezcloud.ml:7400/index.php/s/dotfiles_home/download/home.tar.gz
     dest: /home/murali/
     owner: murali
     group: murali
