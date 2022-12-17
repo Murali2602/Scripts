@@ -13,12 +13,3 @@ cd ~/ && git clone https://github.com/Murali2602/Scripts
 cd Scripts/Backup/Fedora/
 ansible-playbook --ask-become-pass site.yml
 
-
-### Delete the downloaded files in home directory 
-#
-rm -f *.gpg ; rm -f *.tar.gz
-
-
-### Clear the Downloads directory
-#
-rm -rf ~/Downloads/*
