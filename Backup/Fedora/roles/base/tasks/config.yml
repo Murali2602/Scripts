@@ -19,6 +19,10 @@
     group: murali
     remote_src: yes
 
+- name: Set default shell to ZSH
+  shell:
+    chsh -s /usr/bin/zsh murali
+  
 
 
 - name: Fonts config

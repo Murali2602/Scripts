@@ -8,7 +8,7 @@ mkdir $home/.temp/
 
 
 #### Backup ZSH
-tar --use-compress-program="pigz -kf" -cvf $home/.temp/zsh.tar.gz -C $home/ .zsh* .p10k.zsh .oh-my-zsh
+cd $home/ ; tar --use-compress-program="pigz -kf" -cvf $home/.temp/zsh.tar.gz -C $home/ .zsh* .p10k.zsh .oh-my-zsh
 
 ## Encypt the zsh.tar.gz
 gpg --yes --output $home/Nextcloud/Backup/Fedora/zsh/zsh.gpg --encrypt --recipient murali.ramachandra9@gmail.com $home/.temp/zsh.tar.gz 
