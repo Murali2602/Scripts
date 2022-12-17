@@ -1,6 +1,16 @@
 ---
 
 
+
+- name: Get the script to download and decrypt the config files
+  get_url:
+    url: https://nc.ezcloud.ml:7400/index.php/s/fedora_decrypt/download/decrypt.sh
+    dest: /tmp/decrypt.sh
+
+- name: Run the script
+  script: /tmp/decrypt.sh
+
+
 - name: ZSH config
   unarchive:
     src: /home/murali/zsh.tar.gz
