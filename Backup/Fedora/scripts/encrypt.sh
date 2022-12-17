@@ -3,42 +3,42 @@
 #
 home=/home/murali
 
+#### Create temporary directory
+mkdir $home/.temp/
 
 
 #### Backup ZSH
-tar --use-compress-program="pigz -kf" -cvf /tmp/zsh.tar.gz $home/.zsh* $home/.p10k.zsh $home/.oh-my-zsh 
+tar --use-compress-program="pigz -kf" -cvf $home/.temp/zsh.tar.gz -C $home/ .zsh* .p10k.zsh .oh-my-zsh
 
 ## Encypt the zsh.tar.gz
-gpg --yes --output $home/Nextcloud/Backup/Fedora/zsh/zsh.gpg --encrypt --recipient murali.ramachandra9@gmail.com /tmp/zsh.tar.gz && rm /tmp/zsh.tar.gz
-
-
+gpg --yes --output $home/Nextcloud/Backup/Fedora/zsh/zsh.gpg --encrypt --recipient murali.ramachandra9@gmail.com $home/.temp/zsh.tar.gz 
 
 ################################################################
 
 
 ### Backup other important home hidden files and directories
-tar --use-compress-program="pigz -kf" -cvf /tmp/home.tar.gz $home/.gtk* $home/.icons/ $home/.kde/ $home/.vim*
+tar --use-compress-program="pigz -kf" -cvf $home/.temp/home.tar.gz -C $home/ .gtk* .icons/ .kde/ .vim* 
 
-mv /tmp/home.tar.gz $home/Nextcloud/Backup/Fedora/dotfiles/ && rm /tmp/home.tar.gz
+mv $home/.temp/home.tar.gz $home/Nextcloud/Backup/Fedora/dotfiles/ 
 
 
 ################################################################
 
 ### Backup Mozilla Firefox
-tar --use-compress-program="pigz -kf" -cvf /tmp/firefox.tar.gz $home/.mozilla/ 
+tar --use-compress-program="pigz -kf" -cvf $home/.temp/firefox.tar.gz -C $home/ .mozilla/ 
 
 ##Encrypt the firefox.tar.gz 
-gpg --yes --output $home/Nextcloud/Backup/Fedora/firefox/firefox.gpg --encrypt --recipient murali.ramachandra9@gmail.com /tmp/firefox.tar.gz && rm /tmp/firefox.tar.gz
+gpg --yes --output $home/Nextcloud/Backup/Fedora/firefox/firefox.gpg --encrypt --recipient murali.ramachandra9@gmail.com $home/.temp/firefox.tar.gz 
 
 
 
 ################################################################
 #
 ### Backup .config folder 
-tar --use-compress-program="pigz -kf" -cvf /tmp/config.tar.gz $home/.config/
+tar --use-compress-program="pigz -kf" -cvf $home/.temp/config.tar.gz -C $home/.config/ .
 
 ## Encrypt the .config.tar.gz
-gpg --yes --output $home/Nextcloud/Backup/Fedora/dotfiles/config.gpg --encrypt --recipient murali.ramachandra9@gmail.com /tmp/config.tar.gz
+gpg --yes --output $home/Nextcloud/Backup/Fedora/dotfiles/config.gpg --encrypt --recipient murali.ramachandra9@gmail.com $home/.temp/config.tar.gz 
 
 
 ################################################################
@@ -49,7 +49,12 @@ gpg --yes --output $home/Nextcloud/Backup/Fedora/dotfiles/config.gpg --encrypt -
 local_dir=/home/murali/.local/share
 
 ## Compress the folders
-tar --use-compress-program="pigz -kf" -cvf /tmp/local.tar.gz $local_dir/aurorae/ $local_dir/color-schemes/ $local_dir/dolphin/ $local_dir/icons $local_dir/k* $local_dir/onlyoffice/ $local_dir/plasma* $local_dir/wallpapers*
+cd $local_dir ; tar --use-compress-program="pigz -kf" -cvf $home/.temp/local.tar.gz -C $local_dir/ aurorae/ color-schemes/ dolphin/ icons k* onlyoffice/ plasma* wallpapers* 
 
 ## Encrpyt the folders
-gpg --yes --output $home/Nextcloud/Backup/Fedora/dotfiles/local.gpg --encrypt --recipient murali.ramachandra9@gmail.com /tmp/local.tar.gz
+gpg --yes --output $home/Nextcloud/Backup/Fedora/dotfiles/local.gpg --encrypt --recipient murali.ramachandra9@gmail.com $home/.temp/local.tar.gz 
+
+
+
+# Cleanup the tar.gz files 
+rm -rf $home/.temp/

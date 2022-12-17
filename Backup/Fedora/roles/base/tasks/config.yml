@@ -1,25 +1,9 @@
 ---
 
 
-#- name: ZSH config
-#  become: yes
-#  become_method: su
-#  become_user: murali
-#  synchronize:
-#    src: zsh/.oh-my-zsh
-#    dest: /home/murali/
-#
-#- name: ZSH copy
-#  copy:
-#    src: zsh/.zsh_history
-#    dest: /home/murali/
-#    owner: murali
-#    group: murali
-
-
 - name: ZSH config
   unarchive:
-    src: https://nc.ezcloud.ml:7400/index.php/s/zsh/download/zsh.tar.gz
+    src: /home/murali/zsh.tar.gz
     dest: /home/murali/
     owner: murali
     group: murali
@@ -29,9 +13,43 @@
 
 - name: Fonts config
   unarchive:
-    src: https://nc.ezcloud.ml:7400/index.php/s/fonts/download/fonts.tar.gz
+    src: https://nc.ezcloud.ml:7400/index.php/s/fonts
     dest: /usr/share/fonts/
     owner: murali
     group: murali
     remote_src: yes
 
+
+- name: Firefox config
+  unarchive:
+    src: /home/murali/firefox.tar.gz
+    dest: /home/murali/
+    owner: murali
+    group: murali
+    remote_src: yes
+
+
+- name: .local config
+  unarchive:
+    src: /home/murali/local.tar.gz
+    dest: /home/murali/.local/share/
+    owner: murali
+    group: murali
+    remote_src: yes
+
+
+- name: .config configuration
+  unarchive: 
+  src: /home/murali/config.tar.gz
+  dest: /home/murali/.config/
+  owner: murali
+  group: murali
+  remote_src: yes
+
+- name: other/misc configuration
+  unarchive:
+  src: /home/murali/home.tar.gz
+  dest: /home/murali/
+  owner: murali
+  group: murali
+  remote_src: yes
