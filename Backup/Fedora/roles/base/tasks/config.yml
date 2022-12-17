@@ -40,16 +40,16 @@
 
 - name: .config configuration
   unarchive: 
-  src: /home/murali/config.tar.gz
-  dest: /home/murali/.config/
-  owner: murali
-  group: murali
-  remote_src: yes
+    src: /home/murali/config.tar.gz
+    dest: /home/murali/.config/
+    owner: murali
+    group: murali
+    remote_src: yes
 
 - name: other/misc configuration
   unarchive:
-  src: /home/murali/home.tar.gz
-  dest: /home/murali/
-  owner: murali
-  group: murali
-  remote_src: yes
+    src: /home/murali/home.tar.gz
+    dest: /home/murali/
+    owner: murali
+    group: murali
+    remote_src: yes
