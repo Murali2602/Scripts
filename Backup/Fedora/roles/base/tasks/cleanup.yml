@@ -10,4 +10,4 @@
 
 - name: Remove the ansible playbook folder
   shell:
-    mv /home/murali/Scripts/ /tmp/
+    rm -rf /home/murali/Scripts/
