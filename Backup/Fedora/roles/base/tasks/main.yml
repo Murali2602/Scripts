@@ -9,3 +9,6 @@
 
 - name: Run config.yml task
   import_tasks: config.yml
+
+- name: Run cleanup.yml task
+  import_tasks: cleanup.yml
