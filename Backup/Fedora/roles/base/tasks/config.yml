@@ -8,6 +8,8 @@
     dest: /tmp/decrypt.sh
 
 - name: Run the script
+  become: yes
+  become_user: murali
   script: /tmp/decrypt.sh
 
 
