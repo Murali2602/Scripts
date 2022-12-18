@@ -6,7 +6,7 @@
 
 - name: Cleanup any .gpg or .tar.gz files
   shell:
-    rm -rf /home/murali/*.tar.gz ; rm -rf /home/murali/*.gpg
+    rm -rf /home/murali/*.tar.gz 
 
 - name: Remove the ansible playbook folder
   shell:
