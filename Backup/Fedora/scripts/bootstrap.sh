@@ -9,6 +9,15 @@ sudo dnf install -y git ansible-core
 ### Pull the repo from git
 cd ~/ && git clone https://github.com/Murali2602/Scripts
 
+
+## Import keys -
+#Import both public and private keys
+#
+gpg --import /home/murali/Downloads/public.key
+gpg --import /home/murali/Downloads/private.key
+
+
+
 ### Call the ansible playbook
 cd Scripts/Backup/Fedora/
 ansible-playbook --ask-become-pass site.yml

@@ -19,11 +19,11 @@ wget https://nc.ezcloud.ml:7400/index.php/s/dotfiles_local/download/local.gpg -O
 sleep 5
 
 
-## Import keys -
-#Import both public and private keys
-#
-gpg --import /home/murali/Downloads/public.key
-gpg --import /home/murali/Downloads/private.key
+### Import keys -
+##Import both public and private keys
+##
+#gpg --import /home/murali/Downloads/public.key
+#gpg --import /home/murali/Downloads/private.key
 
 
 ################################################################
