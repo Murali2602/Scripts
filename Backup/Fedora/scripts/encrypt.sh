@@ -56,5 +56,10 @@ gpg --yes --output $home/Nextcloud/Backup/Fedora/dotfiles/local.gpg --encrypt --
 
 
 
+## Backup cronjobs
+crontab -l > $home/Nextcloud/Backup/Fedora/dotfiles/crontab.bak
+
+
+
 # Cleanup the tar.gz files 
 rm -rf $home/.temp/

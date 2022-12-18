@@ -13,7 +13,7 @@ cd ~/ && git clone https://github.com/Murali2602/Scripts
 #### Import keys -
 ###Import both public and private keys
 ##Check if the keys exist or not 
-FILE=/home/murali/Downloads/*.txt
+FILE=/home/murali/Downloads/private.txt
 #
 if [[ ! -f "$FILE" ]]; then 
 	echo "The Private and Public Keys do not exist! Transfer them and then rerun the script"
