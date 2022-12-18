@@ -13,8 +13,8 @@ cd ~/ && git clone https://github.com/Murali2602/Scripts
 ## Import keys -
 #Import both public and private keys
 #
-gpg --import /home/murali/Downloads/public.key
-gpg --import /home/murali/Downloads/private.key
+gpg --import /home/murali/Downloads/public.txt
+gpg --import /home/murali/Downloads/private.txt
 
 
 
