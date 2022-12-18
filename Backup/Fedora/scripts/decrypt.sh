@@ -22,8 +22,8 @@ sleep 5
 ## Import keys -
 #Import both public and private keys
 #
-gpg --import /home/murali/Downloads/public.txt
-gpg --import /home/murali/Downloads/private.txt
+gpg --import /home/murali/Downloads/public.key
+gpg --import /home/murali/Downloads/private.key
 
 
 ################################################################
