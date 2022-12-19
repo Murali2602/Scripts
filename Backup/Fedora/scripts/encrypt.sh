@@ -60,6 +60,9 @@ gpg --yes --output $home/Nextcloud/Backup/Fedora/dotfiles/local.gpg --encrypt --
 crontab -l > $home/Nextcloud/Backup/Fedora/dotfiles/crontab.bak
 
 
+## Backup flatpak list
+flatpak list --columns=application --app > $home/Nextcloud/Backup/Fedora/flatpak/flatpaks.txt
+
 
 # Cleanup the tar.gz files 
 rm -rf $home/.temp/
