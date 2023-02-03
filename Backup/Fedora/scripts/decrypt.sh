@@ -5,25 +5,25 @@
 # Get all the necessary files
 #
 # ZSH 
-wget https://nc.ezcloud.ml:7400/index.php/s/zsh/download/zsh.gpg -O /tmp/zsh.gpg
+wget https://nc.ezynix.com/s/backup_fedora_zsh/download/zsh.gpg -O /tmp/zsh.gpg
 
 # Firefox
-wget https://nc.ezcloud.ml:7400/index.php/s/firefox/download/firefox.gpg -O /tmp/firefox.gpg
+wget https://nc.ezynix.com/s/backup_fedora_firefox/download/firefox.gpg -O /tmp/firefox.gpg
 
 # .config
-wget https://nc.ezcloud.ml:7400/index.php/s/dotfiles_config/download/config.gpg -O /tmp/config.gpg
+wget https://nc.ezynix.com/s/backup_fedora_config/download/config.gpg -O /tmp/config.gpg
 
 # .local
-wget https://nc.ezcloud.ml:7400/index.php/s/dotfiles_local/download/local.gpg -O /tmp/local.gpg
+wget https://nc.ezynix.com/s/backup_fedora_local/download/local.gpg -O /tmp/local.gpg
 
 sleep 5
 
 
-### Import keys -
-##Import both public and private keys
-##
-#gpg --import /home/murali/Downloads/public.key
-#gpg --import /home/murali/Downloads/private.key
+## Import keys -
+#Import both public and private keys
+#
+gpg --import /home/murali/Downloads/public.txt
+gpg --import /home/murali/Downloads/private.txt
 
 
 ################################################################

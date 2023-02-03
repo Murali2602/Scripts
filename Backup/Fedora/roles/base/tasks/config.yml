@@ -4,7 +4,7 @@
 
 - name: Get the script to download and decrypt the config files
   get_url:
-    url: https://nc.ezcloud.ml:7400/index.php/s/fedora_decrypt/download/decrypt.sh
+    url: https://nc.ezynix.com/s/backup_fedora_decrypt/download/decrypt.sh
     dest: /tmp/decrypt.sh
 
 - name: Run the script
@@ -29,7 +29,7 @@
 
 - name: Fonts config
   unarchive:
-    src: https://nc.ezcloud.ml:7400/index.php/s/fonts/download/fonts.tar.gz
+    src: https://nc.ezynix.com/s/backup_fedora_fonts/download/fonts.tar.gz
     dest: /usr/share/fonts/
     owner: murali
     group: murali
@@ -64,7 +64,7 @@
 
 - name: other/misc configuration
   unarchive:
-    src: https://nc.ezcloud.ml:7400/index.php/s/dotfiles_home/download/home.tar.gz
+    src: https://nc.ezynix.com/s/backup_fedora_home_config/download/home.tar.gz
     dest: /home/murali/
     owner: murali
     group: murali
