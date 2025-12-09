@@ -25,7 +25,7 @@ ghost-theme/
 ├── author.hbs # Author archive
 ├── tag.hbs # Tag archive
 └── package.json # Theme metadata
-
+```
 
 ## 🎨 Customization
 
