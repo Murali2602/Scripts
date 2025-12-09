@@ -1,0 +1,39 @@
+{{!< default}}
+
+<section class="author-archive">
+    <div class="container">
+        <header class="archive-header">
+            <h1>{{primary_author.name}}</h1>
+            {{#if primary_author.bio}}
+            <p class="author-bio">{{primary_author.bio}}</p>
+            {{/if}}
+        </header>
+
+        {{#if posts}}
+        <div class="posts-grid">
+            {{#foreach posts}}
+            <article class="post-card">
+                {{#if feature_image}}
+                <a href="{{url}}" class="post-image">
+                    <img src="{{feature_image}}" alt="{{title}}">
+                </a>
+                {{/if}}
+                <div class="post-content">
+                    <h2 class="post-title">
+                        <a href="{{url}}">{{title}}</a>
+                    </h2>
+                    <div class="post-meta">
+                        <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMMM YYYY"}}</time>
+                    </div>
+                    <p class="post-excerpt">{{excerpt words="30"}}</p>
+                </div>
+            </article>
+            {{/foreach}}
+        </div>
+
+        {{pagination}}
+        {{else}}
+        <p class="no-posts">No posts found.</p>
+        {{/if}}
+    </div>
+</section>

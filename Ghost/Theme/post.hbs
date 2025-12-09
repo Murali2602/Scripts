@@ -1,0 +1,87 @@
+{{!< default}}
+
+{{#post}}
+<article class="{{post_class}} post-template">
+    <!-- Hero Header -->
+    <header class="article-header">
+        <div class="container">
+            {{#if primary_tag}}
+            <a href="{{primary_tag.url}}" class="article-tag">{{primary_tag.name}}</a>
+            {{/if}}
+            <h1 class="article-title">{{title}}</h1>
+            <div class="article-meta">
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMMM YYYY"}}</time>
+                {{#if reading_time}}
+                <span class="reading-time">• {{reading_time}}</span>
+                {{/if}}
+            </div>
+        </div>
+    </header>
+
+    {{#if feature_image}}
+    <figure class="article-image">
+        <img src="{{img_url feature_image size="xl"}}" alt="{{title}}" loading="lazy">
+    </figure>
+    {{/if}}
+
+    <!-- Article Content -->
+    <section class="article-content">
+        <div class="container">
+            {{content}}
+        </div>
+    </section>
+
+    <!-- Article Footer -->
+    <footer class="article-footer">
+        <div class="container">
+            {{#if tags}}
+            <div class="article-tags">
+                <span class="tags-label">Tagged in:</span>
+                {{#foreach tags}}
+                <a href="{{url}}" class="tag-link">{{name}}</a>
+                {{/foreach}}
+            </div>
+            {{/if}}
+
+            <div class="author-card">
+                {{#primary_author}}
+                <div class="author-info">
+                    <h3>Written by {{name}}</h3>
+                    {{#if bio}}
+                    <p>{{bio}}</p>
+                    {{/if}}
+                </div>
+                {{/primary_author}}
+            </div>
+        </div>
+    </footer>
+</article>
+
+{{!-- Related Posts --}}
+{{#get "posts" limit="3" filter="id:-{{id}}+tag:{{primary_tag.slug}}"}}
+    {{#if posts}}
+    <section class="related-posts">
+        <div class="container">
+            <h2 class="section-title">Related Posts</h2>
+            <div class="posts-grid">
+                {{#foreach posts}}
+                <article class="post-card">
+                    {{#if feature_image}}
+                    <a href="{{url}}" class="post-image">
+                        <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy">
+                    </a>
+                    {{/if}}
+                    <div class="post-content">
+                        <h3 class="post-title">
+                            <a href="{{url}}">{{title}}</a>
+                        </h3>
+                        <p class="post-excerpt">{{excerpt words="20"}}</p>
+                    </div>
+                </article>
+                {{/foreach}}
+            </div>
+        </div>
+    </section>
+    {{/if}}
+{{/get}}
+{{/post}}

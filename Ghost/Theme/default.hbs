@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{meta_title}}</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <!-- Prevent flash of unstyled content / theme flash -->
+    <script>
+        // Set theme before page renders to prevent flash
+        (function() {
+            const theme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    
+    {{ghost_head}}
+    
+    <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}" />
+    
+</head>
+<body class="{{body_class}}">
+    <div class="site-wrapper">
+        <!-- Header -->
+        <header class="site-header">
+            <div class="container">
+                <nav class="site-nav">
+                    <a href="{{@site.url}}" class="site-logo">{{@site.title}}</a>
+                    <ul class="nav-menu">
+                        <li><a href="{{@site.url}}">Home</a></li>
+                        <li><a href="{{@site.url}}#about">About</a></li>
+                        <li><a href="{{@site.url}}/#skills">Skills</a></li>
+                        <li><a href="{{@site.url}}/#certifications">Certifications</a></li>
+                        <li><a href="{{@site.url}}/#projects">Projects</a></li>
+                        <li><a href="{{@site.url}}/#contact">Contact</a></li>
+                    </ul>
+                     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                        <!-- Moon icon for dark mode -->
+                        <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <!-- Sun icon for light mode -->
+                        <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="site-main">
+            {{{body}}}
+        </main>
+
+        {{!-- <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p>&copy; {{date format="YYYY"}} {{@site.title}}. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="{{@site.url}}/privacy">Privacy</a>
+                        <a href="{{@site.url}}/terms">Terms</a>
+                        <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
+                        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </footer> --}}
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Update icon visibility based on current theme
+        const currentTheme = html.getAttribute('data-theme');
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+        
+        // Optional: Add scroll effect to header
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.site-header');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+
+    {{ghost_foot}}
+</body>
+</html>

@@ -1,0 +1,25 @@
+{{!< default}}
+
+{{#page}}
+
+<article class="page-single">
+    <div class="container narrow">
+        {{#if @page.show_title_and_feature_image}}
+        <header class="page-header">
+            <h1 class="page-title">{{title}}</h1>
+        </header>
+
+        {{#if feature_image}}
+        <figure class="page-feature-image">
+            <img src="{{feature_image}}" alt="{{title}}">
+        </figure>
+        {{/if}}
+        {{/if}}
+
+        <div class="page-content">
+            {{content}}
+        </div>
+    </div>
+</article>
+
+{{/page}}

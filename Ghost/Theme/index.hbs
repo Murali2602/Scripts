@@ -1,0 +1,41 @@
+{{!< default}}
+
+<section class="blog-section">
+    <div class="container">
+        <h1 class="page-title">Blog</h1>
+        
+        {{#if posts}}
+        <div class="posts-grid">
+            {{#foreach posts}}
+            <article class="post-card">
+                {{#if feature_image}}
+                <a href="{{url}}" class="post-image">
+                    <img src="{{feature_image}}" alt="{{title}}">
+                </a>
+                {{/if}}
+                <div class="post-content">
+                    <h2 class="post-title">
+                        <a href="{{url}}">{{title}}</a>
+                    </h2>
+                    <div class="post-meta">
+                        <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMMM YYYY"}}</time>
+                        {{#if tags}}
+                        <span class="post-tags">
+                            {{#foreach tags limit="2"}}
+                            <a href="{{url}}" class="tag">{{name}}</a>
+                            {{/foreach}}
+                        </span>
+                        {{/if}}
+                    </div>
+                    <p class="post-excerpt">{{excerpt words="30"}}</p>
+                </div>
+            </article>
+            {{/foreach}}
+        </div>
+
+        {{pagination}}
+        {{else}}
+        <p class="no-posts">No posts found.</p>
+        {{/if}}
+    </div>
+</section>
